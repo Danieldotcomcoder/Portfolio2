@@ -6,10 +6,10 @@ import * as dat from 'dat.gui'
 // Loading 
 
 const textureLoader = new THREE.TextureLoader()
-
 const normalTexture = textureLoader.load('/texture/NormalMap.png')
 
 // Debug
+
 const gui = new dat.GUI()
 
 // Canvas
@@ -18,29 +18,43 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
+
 // Objects
-const geometry = new THREE.SphereBufferGeometry( .5, 64, 64 );
+const geometry = new THREE.SphereBufferGeometry( .3, 30, 25 );
+
 
 // Materials
 
 const material = new THREE.MeshStandardMaterial()
-material.metalness = 0.7
-material.roughness = 0.2
+material.metalness = 0.8
+material.roughness = 0.7
+
 material.normalMap = normalTexture;
 
-material.color = new THREE.Color(0x292929)
+material.color = new THREE.Color(0xfffff)
 
 // Mesh
 const sphere = new THREE.Mesh(geometry,material)
 scene.add(sphere)
 
+
+
+
 // Lights
 //Light 1
-const pointLight = new THREE.PointLight(0xffffff, 0.1)
+const pointLight = new THREE.PointLight(0xffffff, 0.4)
 pointLight.position.x = 2
-pointLight.position.y = 3
-pointLight.position.z = 4
+pointLight.position.y = 2
+pointLight.position.z = 2
 scene.add(pointLight)
+
+
+// Light 2
+const pointLight2 = new THREE.PointLight(0xff0000, 5)
+pointLight2.position.set(-45,10,10)
+
+scene.add(pointLight2)
+
 
 
 
@@ -67,6 +81,8 @@ window.addEventListener('resize', () =>
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 })
+
+
 
 /**
  * Camera
@@ -98,21 +114,21 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 
 // onMouseMovement
-document.addEventListener('mousemove', onDocumentMousemove)
+// document.addEventListener('mousemove', onDocumentMousemove)
 
-let mouseX = 0
-let mouseY = 0
+// let mouseX = 0
+// let mouseY = 0
 
-let targetX = 0
-let targetY = 0
+// let targetX = 0
+// let targetY = 0
 
-const windowHalfX = window.innerWidth / 2;
-const windowHalfY = window.innerHeight / 2;
+// const windowHalfX = window.innerWidth / 2;
+// const windowHalfY = window.innerHeight / 2;
 
-function onDocumentMousemove(event) {
-    mouseX = (event.clientX - windowHalfX)
-    mouseY = (event.clientY - windowHalfY)
-}
+// function onDocumentMousemove(event) {
+//     mouseX = (event.clientX - windowHalfX)
+//     mouseY = (event.clientY - windowHalfY)
+// }
 const clock = new THREE.Clock()
 
 
@@ -124,16 +140,16 @@ const clock = new THREE.Clock()
 
 const animate = () =>
 {
-      targetX = mouseX * .001
-      targetY = mouseY * .001
+    //   targetX = mouseX * .001
+    //   targetY = mouseY * .001
     const elapsedTime = clock.getElapsedTime()
 
     // Update objects
-    sphere.rotation.y = .5 * elapsedTime
+    sphere.rotation.y = 1.5 * elapsedTime
     
-    sphere.rotation.y += .5 * (targetX - sphere.rotation.y)
-    sphere.rotation.x += .05 * (targetY - sphere.rotation.z)
-    sphere.rotation.z += - .05 * (targetY - sphere.rotation.x)
+    // sphere.rotation.y += .5 * (targetX - sphere.rotation.y)
+    // sphere.rotation.x += .05 * (targetY - sphere.rotation.z)
+    // sphere.rotation.z += - .05 * (targetY - sphere.rotation.x)
     // Update Orbital Controls
     // controls.update()
 
