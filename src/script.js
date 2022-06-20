@@ -20,23 +20,21 @@ const canvas = document.querySelector('canvas.webgl')
 // Scen
 const scene = new THREE.Scene()
 
-const geometry = new THREE.SphereBufferGeometry( .4, 30, 25 );
+//Objects
+
+//Object 1
+const geometry = new THREE.SphereBufferGeometry( .2, 30, 25 );
 const material = new THREE.MeshStandardMaterial()
 material.normalMap = normalTexture;
 const sphere = new THREE.Mesh(geometry,material)
 sphere.translateX(-1.5)
 scene.add(sphere)
 
-
-
-
-const geometry2 = new THREE.SphereBufferGeometry( .2, 30, 25 );
+//Object 2
+const geometry2 = new THREE.SphereBufferGeometry( .2, 30, 35 );
 const material2 = new THREE.MeshStandardMaterial()
-// material2.color = new THREE.Color(0x49ef4)
-// material2.reflectivity = 0.5
-// material2.metalness = 0.3
-// material2.roughness = 0.8
-
+material2.metalness = 0.8
+material2.roughness = 0.8
 material2.normalMap = normalTexture2;
 const sphere2 = new THREE.Mesh(geometry2,material2)
 sphere2.translateX(1)
@@ -44,34 +42,16 @@ scene.add(sphere2)
 
 
 // Lights
+
 //Light 1
 const pointLight = new THREE.PointLight( 0xff0000, 0.9 )
-pointLight.position.set(-0.8,0,0)
-const sphereSize = 0.2;
-const pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
-scene.add( pointLightHelper );   
+pointLight.position.set(1.3,0,0.5)
 scene.add(pointLight)
 
-
-// // Light 2
-const pointLight2 = new THREE.PointLight(0xfffff, 0.1)
-pointLight2.position.set(1.6,-1,0)
+//Light 2
+const pointLight2 = new THREE.PointLight( 0x3ac6ff, 0.4 )
+pointLight2.position.set(-0.5,0,-0.5)
 scene.add(pointLight2)
-const sphereSize2 = 0.2;
-const pointLightHelper2 = new THREE.PointLightHelper( pointLight2, sphereSize2 );
-scene.add( pointLightHelper2 );   
-scene.add(pointLight2)
-
-
-
-
-// const pointLight3 = new THREE.PointLight(0xff0000, 5)
-// pointLight2.position.set(-20,15,15)
-
-// scene.add(pointLight3)
-
-
-
 
 /**
  * Sizes
@@ -161,8 +141,9 @@ const animate = () =>
 
     // Update objects
     sphere.rotation.y = 1.5 * elapsedTime
-    // sphere.translateX(-0.001*elapsedTime)
-    // sphere.translateZ(0.03)
+   
+    sphere2.translateX(0.001)
+    sphere.translateX(-0.001)
     sphere2.rotation.y = 1.5 * elapsedTime
     
     // sphere.rotation.y += .5 * (targetX - sphere.rotation.y)

@@ -9,7 +9,7 @@ body
 {
     height: 100vh;
     font-family: 'Poppins';
-    background: gray;
+    background-image: url(/static/images/space.jpg)
 }
 
 .webgl
