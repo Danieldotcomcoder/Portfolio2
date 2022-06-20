@@ -9,6 +9,7 @@ const textureLoader = new THREE.TextureLoader()
 const textureLoader2 = new THREE.TextureLoader()
 const normalTexture = textureLoader.load('/texture/2k_mars.jpg')
 const normalTexture2 = textureLoader2.load('/texture/2k_earth_daymap.jpg')
+const normalTexture3 = textureLoader2.load('/texture/2k_sun.jpg')
 
 // Debug
 
@@ -23,23 +24,33 @@ const scene = new THREE.Scene()
 //Objects
 
 //Object 1
-const geometry = new THREE.SphereBufferGeometry( .2, 30, 25 );
+const geometry = new THREE.SphereBufferGeometry( .13, 30, 25 );
 const material = new THREE.MeshStandardMaterial()
 material.normalMap = normalTexture;
 const sphere = new THREE.Mesh(geometry,material)
-sphere.translateX(-1.5)
+sphere.translateX(-1.3)
 scene.add(sphere)
 
 //Object 2
-const geometry2 = new THREE.SphereBufferGeometry( .2, 30, 35 );
+const geometry2 = new THREE.SphereBufferGeometry( .13, 30, 35 );
 const material2 = new THREE.MeshStandardMaterial()
 material2.metalness = 0.8
 material2.roughness = 0.8
 material2.normalMap = normalTexture2;
 const sphere2 = new THREE.Mesh(geometry2,material2)
-sphere2.translateX(1)
+sphere2.translateX(0.8)
 scene.add(sphere2)
 
+//Object 3
+const geometry3 = new THREE.SphereBufferGeometry(.1 , 30, 35 )
+const material3 = new THREE.MeshStandardMaterial()
+material3.metalness = 0.2
+material3.roughness = 0.2
+material3.normalMap = normalTexture3
+const sphere3 = new THREE.Mesh(geometry3,material3)
+sphere3.translateY(0.8)
+
+scene.add(sphere3)
 
 // Lights
 
@@ -109,21 +120,21 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 
 // onMouseMovement
-// document.addEventListener('mousemove', onDocumentMousemove)
+document.addEventListener('mousemove', onDocumentMousemove)
 
-// let mouseX = 0
-// let mouseY = 0
+let mouseX = 0
+let mouseY = 0
 
-// let targetX = 0
-// let targetY = 0
+let targetX = 0
+let targetY = 0
 
-// const windowHalfX = window.innerWidth / 2;
-// const windowHalfY = window.innerHeight / 2;
+const windowHalfX = window.innerWidth / 2;
+const windowHalfY = window.innerHeight / 2;
 
-// function onDocumentMousemove(event) {
-//     mouseX = (event.clientX - windowHalfX)
-//     mouseY = (event.clientY - windowHalfY)
-// }
+function onDocumentMousemove(event) {
+    mouseX = (event.clientX - windowHalfX)
+    mouseY = (event.clientY - windowHalfY)
+}
 const clock = new THREE.Clock()
 
 
@@ -135,22 +146,19 @@ const clock = new THREE.Clock()
 
 const animate = () =>
 {
-    //   targetX = mouseX * .001
-    //   targetY = mouseY * .001
+      targetX = mouseX * .001
+      targetY = mouseY * .001
     const elapsedTime = clock.getElapsedTime()
 
     // Update objects
     sphere.rotation.y = 1.5 * elapsedTime
-   
-    sphere2.translateX(0.001)
-    sphere.translateX(-0.001)
     sphere2.rotation.y = 1.5 * elapsedTime
+    sphere3.rotation.y = 3.5 * elapsedTime
+    sphere3.translateY(-0.001)
     
-    // sphere.rotation.y += .5 * (targetX - sphere.rotation.y)
-    // sphere.rotation.x += .05 * (targetY - sphere.rotation.z)
-    // sphere.rotation.z += - .05 * (targetY - sphere.rotation.x)
-    // Update Orbital Controls
-    // controls.update()
+    sphere.translateX(  .008 * (targetX - sphere.rotation.x))
+    sphere2.translateX(  -0.008 * (targetX - sphere.rotation.x))
+  
 
     // Render
     renderer.render(scene, camera)
