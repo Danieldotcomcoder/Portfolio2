@@ -20,8 +20,7 @@ const scene = new THREE.Scene()
 
 
 // Objects
-const geometry = new THREE.SphereBufferGeometry( .3, 30, 25 );
-
+const geometry = new THREE.SphereBufferGeometry( .2, 30, 25 );
 
 // Materials
 
@@ -35,25 +34,54 @@ material.color = new THREE.Color(0xfffff)
 
 // Mesh
 const sphere = new THREE.Mesh(geometry,material)
+sphere.translateX(-1.5)
+
 scene.add(sphere)
 
 
 
 
+const geometry2 = new THREE.SphereBufferGeometry( .2, 30, 25 );
+const material2 = new THREE.MeshPhysicalMaterial()
+material2.color = new THREE.Color(0x49ef4)
+material2.reflectivity = 0.5
+material2.metalness = 0.8
+material2.roughness = 0.7
+
+material2.normalMap = normalTexture;
+const sphere2 = new THREE.Mesh(geometry2,material2)
+sphere2.translateX(1.2)
+scene.add(sphere2)
+
+
 // Lights
 //Light 1
 const pointLight = new THREE.PointLight(0xffffff, 0.4)
-pointLight.position.x = 2
-pointLight.position.y = 2
-pointLight.position.z = 2
+pointLight.position.x = -2
+pointLight.position.y = 0
+pointLight.position.z = 0.5
+const sphereSize = 0.2;
+const pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
+scene.add( pointLightHelper );   
 scene.add(pointLight)
 
 
-// Light 2
-const pointLight2 = new THREE.PointLight(0xff0000, 5)
-pointLight2.position.set(-45,10,10)
-
+// // Light 2
+const pointLight2 = new THREE.PointLight(0xff0000, 0.9)
+pointLight2.position.set(2,0,0.5)
 scene.add(pointLight2)
+const sphereSize2 = 0.2;
+const pointLightHelper2 = new THREE.PointLightHelper( pointLight2, sphereSize2 );
+scene.add( pointLightHelper2 );   
+scene.add(pointLight2)
+
+
+
+
+// const pointLight3 = new THREE.PointLight(0xff0000, 5)
+// pointLight2.position.set(-20,15,15)
+
+// scene.add(pointLight3)
 
 
 
@@ -146,6 +174,7 @@ const animate = () =>
 
     // Update objects
     sphere.rotation.y = 1.5 * elapsedTime
+    sphere2.rotation.y = 1.5 * elapsedTime
     
     // sphere.rotation.y += .5 * (targetX - sphere.rotation.y)
     // sphere.rotation.x += .05 * (targetY - sphere.rotation.z)
