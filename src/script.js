@@ -52,6 +52,27 @@ sphere3.translateY(0.8)
 
 scene.add(sphere3)
 
+
+//Object 4
+const geometry4 = new THREE.SphereBufferGeometry(.4 , 30, 35 )
+const material4 = new THREE.MeshStandardMaterial()
+material4.metalness = 0.2
+material4.roughness = 0.2
+material4.normalMap = normalTexture3
+const sphere4 = new THREE.Mesh(geometry4,material4)
+scene.add(sphere4)
+
+//Object 5
+const geometry5 = new THREE.SphereBufferGeometry(.4 , 30, 35 )
+const material5 = new THREE.MeshStandardMaterial()
+material5.metalness = 0.2
+material5.roughness = 0.2
+material5.normalMap = normalTexture3
+const sphere5 = new THREE.Mesh(geometry5,material5)
+sphere5.translateZ(-10)
+scene.add(sphere5)
+
+
 // Lights
 
 //Light 1
@@ -153,9 +174,14 @@ const animate = () =>
     // Update objects
     sphere.rotation.y = 1.5 * elapsedTime
     sphere2.rotation.y = 1.5 * elapsedTime
-    sphere3.rotation.y = 3.5 * elapsedTime
-    sphere3.translateY(-0.001)
-    
+    sphere3.rotation.y = 1.5 * elapsedTime
+    sphere4.rotation.y = 0.5 * elapsedTime
+    sphere3.translateZ(0.005)
+
+    sphere4.translateX(0.40)
+    sphere5.translateZ(0.09)
+
+
     sphere.translateX(  .008 * (targetX - sphere.rotation.x))
     sphere2.translateX(  -0.008 * (targetX - sphere.rotation.x))
   
