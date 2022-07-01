@@ -43,31 +43,31 @@ const control = new OrbitControls(camera, renderer.domElement)
 //     const geometry = new THREE.SphereGeometry(0.25, 24 , 24)
 //     const material = new THREE.MeshStandardMaterial( {color: 0xffffff} );
 //     const star = new THREE.Mesh(geometry, material)
-const textureLoader = new THREE.TextureLoader()
-const textureLoader2 = new THREE.TextureLoader()
-const normalTexture = textureLoader.load('/texture/2k_mars.jpg')
-const normalTexture2 = textureLoader2.load('/texture/2k_earth_daymap.jpg')
-const normalTexture3 = textureLoader2.load('/texture/2k_sun.jpg')
+// const textureLoader = new THREE.TextureLoader()
+// const textureLoader2 = new THREE.TextureLoader()
+// const normalTexture = textureLoader.load('/texture/2k_mars.jpg')
+// const normalTexture2 = textureLoader2.load('/texture/2k_earth_daymap.jpg')
+// const normalTexture3 = textureLoader2.load('/texture/2k_sun.jpg')
 
-// Debug
+// // Debug
 
-const gui = new dat.GUI()
+// const gui = new dat.GUI()
 
-// Canvas
-const canvas = document.querySelector('canvas.webgl')
+// // Canvas
+// const canvas = document.querySelector('canvas.webgl')
 
-// Scen
-const scene = new THREE.Scene()
+// // Scen
+// const scene = new THREE.Scene()
 
-//Objects
+// //Objects
 
-//Object 1
-const geometry = new THREE.SphereBufferGeometry( .13, 30, 25 );
-const material = new THREE.MeshStandardMaterial()
-material.normalMap = normalTexture;
-const sphere = new THREE.Mesh(geometry,material)
-sphere.translateX(-1.3)
-scene.add(sphere)
+// //Object 1
+// const geometry = new THREE.SphereBufferGeometry( .13, 30, 25 );
+// const material = new THREE.MeshStandardMaterial()
+// material.normalMap = normalTexture;
+// const sphere = new THREE.Mesh(geometry,material)
+// sphere.translateX(-1.3)
+// scene.add(sphere)
 
 //Object 2
 const geometry2 = new THREE.SphereBufferGeometry( .13, 30, 35 );
