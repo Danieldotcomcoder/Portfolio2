@@ -16,7 +16,7 @@ document.body.appendChild( renderer.domElement );
 
 
 // Object 1
-const geometry = new THREE.SphereGeometry( 0.4, 35, 35 );
+const geometry = new THREE.SphereGeometry( 0.4, 35, 55 );
 const texture = new THREE.TextureLoader().load( '/static/texture/2kmars.jpg' );
 const material = new THREE.MeshBasicMaterial( { map: texture } );
 const sphere = new THREE.Mesh( geometry, material );
@@ -25,7 +25,7 @@ scene.add(sphere);
 
 
 // Object2
-const geometry2 = new THREE.SphereGeometry( 0.4, 35, 35 );
+const geometry2 = new THREE.SphereGeometry( 0.4, 35, 55 );
 const texture2 = new THREE.TextureLoader().load( '/static/texture/2k_earth_daymap.jpg' );
 const material2 = new THREE.MeshBasicMaterial( { map: texture2 } );
 const sphere2 = new THREE.Mesh( geometry2, material2 );
@@ -35,10 +35,10 @@ scene.add(sphere2);
 
 
 
-// //Light 1
-// const pointLight = new THREE.PointLight( 0xff0000, 0.9 )
-// pointLight.position.set(1.3,0,0.5)
-// scene.add(pointLight)
+//Light 1
+const pointLight = new THREE.PointLight( 0xff0000, 0.9 )
+pointLight.position.set(1.3,0,0.5)
+scene.add(pointLight)
 
 
 function animate() {
