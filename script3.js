@@ -2,17 +2,21 @@ import './style.css';
 import * as THREE from 'three';
 
 const scene = new THREE.Scene();
+const loader = new THREE.TextureLoader().load( '/static/images/space.jpg' );
+scene.background = loader;
+
 
 
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-camera.position.z = 3;
+camera.position.z = 4;
 
 
+const renderer = new THREE.WebGLRenderer({
+  canvas: document.querySelector('.webgl'),
+});
 
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild( renderer.domElement );
-
+renderer.setSize( window.innerWidth , window.innerHeight-4 );
+renderer.setPixelRatio(window.devicePixelRatio);
 
 
 // Object 1
@@ -34,8 +38,7 @@ scene.add(sphere2);
 
 
 
-
-//Light 1
+// Light 1
 const pointLight = new THREE.PointLight( 0xff0000, 0.9 )
 pointLight.position.set(1.3,0,0.5)
 scene.add(pointLight)
