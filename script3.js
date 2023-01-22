@@ -40,7 +40,7 @@ scene.add(sphere2);
 
 // Object3
 const geometry3 = new THREE.SphereGeometry( 0.8, 35, 55 );
-const texture3 = new THREE.TextureLoader().load( '/static/texture/2k_earth_daymap.jpg' );
+const texture3 = new THREE.TextureLoader().load( '/static/texture/8k_earth_daymap.jpg' );
 const material3 = new THREE.MeshBasicMaterial( { map: texture3 } );
 const sphere3 = new THREE.Mesh( geometry3, material3 );
 sphere3.translateX(5)
@@ -48,22 +48,28 @@ sphere3.translateY(3)
 sphere3.translateZ(0)
 scene.add(sphere3);
 
+// Object 4
 
-// Light 1
-const pointLight = new THREE.PointLight( 0xff0000, 0.3 )
-pointLight.position.set(1.3,0,0.5)
-scene.add(pointLight)
-
-const clock = new THREE.Clock();
-
+const geometry4 = new THREE.SphereGeometry( 0.1,55, 55 );
+const texture4 = new THREE.TextureLoader().load( '/static/texture/moon.jpg' );
+const material4  = new THREE.MeshBasicMaterial( { map: texture4 } );
+const sphere4 = new THREE.Mesh( geometry4, material4 );
+sphere4.translateY(1)
+sphere4.translateZ(4)
+sphere4.translateX(-2)
+scene.add(sphere4);
 
 function animate() {
     sphere.rotation.y += 0.01;
     sphere2.rotation.y += 0.01;
     sphere3.rotation.y += 0.02;
-	const elapsedTime = clock.getElapsedTime()
-    sphere.translateZ(0.005 * elapsedTime/2)
-    sphere.translateX(0.005 * elapsedTime/2)
+    sphere4.rotation.y += 0.02;
+    
+     
+    sphere.translateZ(0.03)
+    sphere.translateX(0.01)
+    sphere4.translateZ(0.01)
+    sphere4.translateY(-0.0001)
 
     renderer.render( scene, camera );
 	requestAnimationFrame( animate );
