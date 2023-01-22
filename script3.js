@@ -25,22 +25,32 @@ const geometry = new THREE.SphereGeometry( 0.4, 35, 55 );
 const texture = new THREE.TextureLoader().load( '/static/texture/2kmars.jpg' );
 const material = new THREE.MeshBasicMaterial( { map: texture } );
 const sphere = new THREE.Mesh( geometry, material );
-sphere.translateX(-1.3)
+sphere.translateX(-2)
 scene.add(sphere);
 
 
 // Object2
 const geometry2 = new THREE.SphereGeometry( 0.4, 35, 55 );
-const texture2 = new THREE.TextureLoader().load( '/static/texture/2k_earth_daymap.jpg' );
+const texture2 = new THREE.TextureLoader().load( '/static/texture/2k_sun.jpg' );
 const material2 = new THREE.MeshBasicMaterial( { map: texture2 } );
 const sphere2 = new THREE.Mesh( geometry2, material2 );
 sphere2.translateX(0)
+sphere2.translateZ(1)
 scene.add(sphere2);
 
+// Object3
+const geometry3 = new THREE.SphereGeometry( 0.8, 35, 55 );
+const texture3 = new THREE.TextureLoader().load( '/static/texture/2k_earth_daymap.jpg' );
+const material3 = new THREE.MeshBasicMaterial( { map: texture3 } );
+const sphere3 = new THREE.Mesh( geometry3, material3 );
+sphere3.translateX(5)
+sphere3.translateY(3)
+sphere3.translateZ(0)
+scene.add(sphere3);
 
 
 // Light 1
-const pointLight = new THREE.PointLight( 0xff0000, 0.9 )
+const pointLight = new THREE.PointLight( 0xff0000, 0.3 )
 pointLight.position.set(1.3,0,0.5)
 scene.add(pointLight)
 
@@ -49,10 +59,11 @@ const clock = new THREE.Clock();
 
 function animate() {
     sphere.rotation.y += 0.01;
-    sphere2.rotation.y += 0.03;
+    sphere2.rotation.y += 0.01;
+    sphere3.rotation.y += 0.02;
 	const elapsedTime = clock.getElapsedTime()
-    sphere.translateX(0.004 * elapsedTime)
-    // //     sphere.translateX(  .008 * (targetX - sphere.rotation.x))
+    sphere.translateZ(0.005 * elapsedTime/2)
+    sphere.translateX(0.005 * elapsedTime/2)
 
     renderer.render( scene, camera );
 	requestAnimationFrame( animate );
